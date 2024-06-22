@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "115038838265",
+    "project_id": "mypfeapp-d8a15",
+    "storage_bucket": "mypfeapp-d8a15.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:115038838265:android:bba5a3186f537701d9b128",
+        "android_client_info": {
+          "package_name": "com.example.eshopbackend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAN76D-T-nXgyp58NxtIDgMdNWJ8s61vQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:115038838265:android:05d39b12f3ee411ad9b128",
+        "android_client_info": {
+          "package_name": "com.example.mypfeapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAN76D-T-nXgyp58NxtIDgMdNWJ8s61vQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
