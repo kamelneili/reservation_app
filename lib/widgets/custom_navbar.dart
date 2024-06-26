@@ -8,8 +8,8 @@ import '../repositories/auth/auth_repository.dart';
 
 class CustomNavBar extends StatefulWidget {
   const CustomNavBar({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<CustomNavBar> createState() => _CustomNavBarState();
@@ -18,7 +18,7 @@ class CustomNavBar extends StatefulWidget {
 class _CustomNavBarState extends State<CustomNavBar> {
   int current = 0;
 
-  int _currentIndex = 0;
+  final int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -29,8 +29,8 @@ class _CustomNavBarState extends State<CustomNavBar> {
           elevation: 0,
           color: Colors.transparent,
           child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 8),
-              decoration: BoxDecoration(shape: BoxShape.circle),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              decoration: const BoxDecoration(shape: BoxShape.circle),
               height: 70.h,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -38,10 +38,8 @@ class _CustomNavBarState extends State<CustomNavBar> {
                   IconButton(
                     onPressed: () {},
                     icon: _currentIndex == 0
-                        ? SvgPicture.asset(
-                            height: 40, 'assets/svg/home_selected.svg')
-                        : SvgPicture.asset(
-                            height: 40, 'assets/svg/home_unselected.svg'),
+                        ? Image.asset(height: 40, 'assets/home.png')
+                        : Image.asset(height: 40, 'assets/home.png'),
                   ),
                   // IconButton(
                   //     onPressed: () {
@@ -55,7 +53,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
                   //     icon: Icon(Icons.shopping_basket, color: Colors.grey)),
                   IconButton(
                     onPressed: () async {
-                      final user = await auth.FirebaseAuth.instance.currentUser;
+                      final user = auth.FirebaseAuth.instance.currentUser;
                       print(user);
                       user != null
                           ? Navigator.pushNamed(
@@ -65,10 +63,8 @@ class _CustomNavBarState extends State<CustomNavBar> {
                           : Navigator.pushNamed(context, '/loginScreen');
                     },
                     icon: _currentIndex == 1
-                        ? SvgPicture.asset(
-                            height: 40, 'assets/svg/person_selected.svg')
-                        : SvgPicture.asset(
-                            height: 40, 'assets/svg/person_selected.svg'),
+                        ? Image.asset(height: 40, 'assets/user.png')
+                        : Image.asset(height: 40, 'assets/user.png'),
                   ),
                   IconButton(
                     onPressed: () {
@@ -77,10 +73,8 @@ class _CustomNavBarState extends State<CustomNavBar> {
                       Navigator.pushNamed(context, '/contactInformation');
                     },
                     icon: _currentIndex == 0
-                        ? SvgPicture.asset(
-                            height: 40, 'assets/svg/phone_selected.svg')
-                        : SvgPicture.asset(
-                            height: 40, 'assets/svg/phone_unselected.svg'),
+                        ? Image.asset(height: 40, 'assets/contact.png')
+                        : Image.asset(height: 40, 'assets/contact.png'),
                   )
                 ],
               ))),

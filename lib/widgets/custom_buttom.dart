@@ -25,7 +25,7 @@ class CustomButton extends StatelessWidget {
         child: ElevatedButton(
           onPressed: onTap,
           style: ElevatedButton.styleFrom(
-            backgroundColor: kDarkBrownColor,
+            backgroundColor: Colors.orange.shade300,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(40),
             ),
@@ -33,7 +33,7 @@ class CustomButton extends StatelessWidget {
           child: Text(
             title,
             style: kEncodeSansRagular.copyWith(
-              color: Colors.blue,
+              color: Colors.black,
             ),
           ),
         ),

@@ -29,9 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: EdgeInsets.zero,
         children: [
           Container(
-            decoration: const BoxDecoration(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.only(
+            decoration: BoxDecoration(
+                color: Colors.orange.shade300,
+                borderRadius: const BorderRadius.only(
                     bottomRight: Radius.circular(30),
                     bottomLeft: Radius.circular(30))),
             child: Column(children: [
@@ -85,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
           const Padding(
             padding: EdgeInsets.only(top: 20),
             child: Text(
-              "Nos Actualités",
+              "Nos Propriétés",
               style: TextStyle(
                   fontWeight: FontWeight.w800,
                   fontSize: 25,

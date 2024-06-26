@@ -50,13 +50,13 @@ class _GrocerySearchTextFormFieldState extends State<SearchTextFormField> {
         //     .add(SearchProductEvent(query: 'margoum')),
 
         decoration: InputDecoration(
-          hintText: 'Search',
+          hintText: '  recherche par nombre de personnes ',
           hintStyle: textTheme.bodyMedium!.copyWith(
             color: Colors.black,
           ),
           prefixIcon: IconButton(
             icon: const Icon(Icons.search),
-            color: Colors.black,
+            color: Colors.orange.shade300,
             onPressed: () {
               Navigator.pushNamed(context, SearchScreen.routeName,
                   arguments: keyController.text);
