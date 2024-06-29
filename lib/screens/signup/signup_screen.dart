@@ -24,8 +24,8 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   StorageRepository storage = StorageRepository();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  final _formKey = GlobalKey<FormState>();
   TextEditingController email = TextEditingController();
   TextEditingController name = TextEditingController();
   TextEditingController phone = TextEditingController();
@@ -308,10 +308,14 @@ class _SignupScreenState extends State<SignupScreen> {
                         // context.read<AuthRepository>().signOut();
                         if (_formKey.currentState!.validate()) {
                           context.read<SignupCubit>().signUpWithCredentials();
+                          Navigator.of(context).pushNamed(
+                            '/loginScreen',
+                          );
+                        } else {
+                          setState(() {
+                            initState();
+                          });
                         }
-                        Navigator.of(context).pushNamed(
-                          '/loginScreen',
-                        );
                       },
                     ),
                   ],

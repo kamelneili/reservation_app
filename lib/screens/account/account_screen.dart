@@ -3,6 +3,7 @@ import 'package:mypfeapp/config/constants.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../translations/locale_keys.g.dart';
 import 'components/body.dart';
@@ -32,6 +33,24 @@ class _AccountScreenState extends State<AccountScreen> {
     //  MyApp.setLocale(context, _locale);
   }
 
+  int notif = 0;
+  @override
+  void initState() {
+    super.initState();
+    getNotif();
+
+    // TODO: implement initState
+  }
+
+  getNotif() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      notif = prefs.getInt('notif')!;
+    });
+    print('notif');
+    print('leng:$notif');
+  }
+
   void _showSuccessDialog() {
     showTimePicker(context: context, initialTime: TimeOfDay.now());
   }
@@ -46,6 +65,7 @@ class _AccountScreenState extends State<AccountScreen> {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),
         ),
+
         title: Text(
           LocaleKeys.myaccount.tr(),
           style: kEncodeSansBold.copyWith(color: Colors.black, fontSize: 15.sp),
@@ -53,6 +73,27 @@ class _AccountScreenState extends State<AccountScreen> {
         actions: <Widget>[
           Row(
             children: [
+              IconButton(
+                onPressed: () {
+                  print("/********************");
+                  // Navigator.of(context)
+                  //   .pushNamed('/cart-deals', arguments: state.data);
+                  Navigator.pushNamed(context, '/basket');
+                  setState(() async {
+                    SharedPreferences pref =
+                        await SharedPreferences.getInstance();
+                    pref.setInt('notif', 0);
+                  });
+                },
+                icon: Badge(
+                  isLabelVisible: true,
+                  label: Text(notif.toString()),
+                  child: const Icon(
+                    Icons.notification_add,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
               //  Expanded(flex: 2, child: Text(LocaleKeys.language.tr())),
               Padding(
                 padding: const EdgeInsets.all(8.0),

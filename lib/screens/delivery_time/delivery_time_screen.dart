@@ -17,6 +17,7 @@ import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../blocs/appointment/appointment_bloc.dart';
 import '../../blocs/appointment/appointment_state.dart';
@@ -80,6 +81,7 @@ class _DeliveryTimeScreenState extends State<DeliveryTimeScreen> {
   //notif
   storeNotificationToken() async {
     String? token = await FirebaseMessaging.instance.getToken();
+    print(token);
     FirebaseFirestore.instance
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -100,7 +102,7 @@ class _DeliveryTimeScreenState extends State<DeliveryTimeScreen> {
               headers: <String, String>{
                 'Content-Type': 'application/json',
                 'Authorization':
-                    'key=AAAAnH-aCqU:APA91bEwp0ZURm1GJXwDiYp8niGaOla5J6KAmzJYIFhiLygNVHa1nmkdiA9UQye_NayphXN6XYrMUSatmeUhCMYjgYXv3zMhXmAxGqc7LGarDgQCEqZ8BQqfRdZeXAkp1J8-SruPOO1C'
+                    'key=dEHnOghpQLi303MbQUGc7z:APA91bEODrhRCiAlPlsIkFo7mE-186CfHzod5O26RDlFwCbMS3eRN29e96u1bp_YczpZ4LEwAd_1Hxg95uGyjLNTlkP0VUHS5PxU1TUNvtGUB4y0yKjmAvAzSPj_IUXleVHLfDHT3AuV'
               },
               body: jsonEncode(<String, dynamic>{
                 'notification': <String, dynamic>{
@@ -113,7 +115,7 @@ class _DeliveryTimeScreenState extends State<DeliveryTimeScreen> {
               }));
 
       if (response.statusCode == 200) {
-        print("Yeh notificatin is sended");
+        print("Yeh notification is sended");
       } else {
         print("Error");
       }
@@ -158,6 +160,9 @@ class _DeliveryTimeScreenState extends State<DeliveryTimeScreen> {
                                   color: Theme.of(context).primaryColor,
                                 )))),
                     onPressed: () async {
+                      SharedPreferences pref =
+                          await SharedPreferences.getInstance();
+                      pref.setInt('notif', 1);
                       final currentuser =
                           auth.FirebaseAuth.instance.currentUser;
                       print("currentuser");

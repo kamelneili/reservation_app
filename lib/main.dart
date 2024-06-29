@@ -29,6 +29,8 @@ import 'package:mypfeapp/screens/home/home_screen.dart';
 import 'package:mypfeapp/screens/signup/signup_screen.dart';
 import 'package:mypfeapp/screens/splash/splash_screen.dart';
 import 'package:mypfeapp/translations/codegen_loader.g.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:mypfeapp/local_push_notification.dart';
 
 import 'blocs/appointment/appointment_bloc.dart';
 import 'blocs/basket/basket_bloc.dart';
@@ -40,6 +42,9 @@ import 'repositories/user/user_repository.dart';
 
 import 'package:easy_localization/easy_localization.dart';
 
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  /// On click listner
+}
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -50,6 +55,16 @@ Future<void> main() async {
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.black26));
   await EasyLocalization.ensureInitialized();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  await FirebaseMessaging.instance.setAutoInitEnabled(true);
+  //await FirebaseMessaging.instance.setDeliveryMetricsExportToBigQuery(true);
+  //LocalNotificationService.initialize();
+  //await GetStorage.init();
+  await FirebaseMessaging.instance.setAutoInitEnabled(true);
+  //await FirebaseMessaging.instance.setDeliveryMetricsExportToBigQuery(true);
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  LocalNotificationService.initialize();
+  //await ServiceFirebaseMessages.getToken();
   await ScreenUtil.ensureScreenSize();
   runApp(EasyLocalization(
       path: 'assets/translations',

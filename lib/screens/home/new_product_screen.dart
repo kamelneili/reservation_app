@@ -8,15 +8,47 @@ import 'package:mypfeapp/home/models/actualite_model.dart';
 import 'package:mypfeapp/widgets/custom_buttom.dart';
 import 'package:readmore/readmore.dart';
 
-class NewProductScreen extends StatelessWidget {
-  NewProductScreen({super.key});
+class NewProductScreen extends StatefulWidget {
+  const NewProductScreen({super.key});
+
+  @override
+  State<NewProductScreen> createState() => _NewProductScreenState();
+}
+
+class _NewProductScreenState extends State<NewProductScreen> {
   final TextEditingController nameController = TextEditingController();
+
   final TextEditingController imageController = TextEditingController();
+
   final TextEditingController descriptionController = TextEditingController();
+
   final TextEditingController priceController = TextEditingController();
+
   final TextEditingController nbrpersController = TextEditingController();
+
   final TextEditingController dispoController = TextEditingController();
+
   final TextEditingController catController = TextEditingController();
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    final TextEditingController nameController = TextEditingController();
+
+    final TextEditingController imageController = TextEditingController();
+
+    final TextEditingController descriptionController = TextEditingController();
+
+    final TextEditingController priceController = TextEditingController();
+
+    final TextEditingController nbrpersController = TextEditingController();
+
+    final TextEditingController dispoController = TextEditingController();
+
+    final TextEditingController catController = TextEditingController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,56 +75,100 @@ class NewProductScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Form(
+                    key: _formKey,
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                      TextFormField(
-                        controller: descriptionController,
-                        autofocus: true,
-                        autocorrect: false,
-                        keyboardType: TextInputType.multiline,
-                        minLines: 1,
-                        maxLines: 8,
-                        decoration: const InputDecoration(
-                          labelText: 'description',
-                          //filled: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(4)),
-                            borderSide: BorderSide(width: 1),
+                          const SizedBox(height: 10),
+                          TextFormField(
+                            controller: descriptionController,
+                            autofocus: true,
+                            autocorrect: false,
+                            keyboardType: TextInputType.multiline,
+                            minLines: 1,
+                            maxLines: 8,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter a valid description';
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              labelText: 'description',
+                              //filled: true,
+                              border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(4)),
+                                borderSide: BorderSide(width: 1),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      TextFormField(
-                        controller: nameController,
-                        decoration: const InputDecoration(
-                          labelText: 'Titre',
-                        ),
-                      ),
-                      TextFormField(
-                        controller: catController,
-                        decoration: const InputDecoration(
-                          labelText: 'Category',
-                        ),
-                      ),
-                      TextFormField(
-                        controller: priceController,
-                        decoration: const InputDecoration(
-                          labelText: 'Price',
-                        ),
-                      ),
-                      TextFormField(
-                        controller: nbrpersController,
-                        decoration: const InputDecoration(
-                          labelText: 'Nombre pers',
-                        ),
-                      ),
-                      TextFormField(
-                        controller: imageController,
-                        decoration: const InputDecoration(
-                          labelText: 'ImageUrl',
-                        ),
-                      ),
-                    ])),
+                          const SizedBox(height: 20),
+                          TextFormField(
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter a valid title';
+                              }
+                              return null;
+                            },
+                            controller: nameController,
+                            decoration: const InputDecoration(
+                              labelText: 'Titre',
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          TextFormField(
+                            controller: catController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter a valid category';
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              labelText: 'Category',
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          TextFormField(
+                            controller: priceController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter a valid price';
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              labelText: 'Price',
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          TextFormField(
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter a valid nombre';
+                              }
+                              return null;
+                            },
+                            controller: nbrpersController,
+                            decoration: const InputDecoration(
+                              labelText: 'Nombre pers',
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          TextFormField(
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter a valid imageUrl';
+                              }
+                              return null;
+                            },
+                            controller: imageController,
+                            decoration: const InputDecoration(
+                              labelText: 'ImageUrl',
+                            ),
+                          ),
+                        ])),
 
                 //
                 const SizedBox(
@@ -100,26 +176,35 @@ class NewProductScreen extends StatelessWidget {
                 ),
                 Center(
                   child: CustomButton(
-                    title: "Sauvgarder Actualité",
-                    onTap: () {
-                      context.read<ActualiteBloc>().add(AddActualite(Actualite(
-                          name: nameController.text,
-                          description: descriptionController.text,
-                          image: imageController.text,
-                          dispo: true,
-                          category: catController.text,
-                          price: priceController.text,
-                          nbprs: nbrpersController.text)));
-                      const snackBar = SnackBar(
-                          content: Text('Actualité ajoutée !!!',
-                              style: TextStyle(color: Colors.green)));
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      title: "Sauvgarder Actualité",
+                      onTap: () {
+                        setState(() {
+                          if (_formKey.currentState!.validate()) {
+                            context.read<ActualiteBloc>().add(AddActualite(
+                                Actualite(
+                                    name: nameController.text,
+                                    description: descriptionController.text,
+                                    image: imageController.text,
+                                    dispo: true,
+                                    category: catController.text,
+                                    price: priceController.text,
+                                    nbprs: nbrpersController.text)));
+                            const snackBar = SnackBar(
+                                content: Text('Actualité ajoutée !!!',
+                                    style: TextStyle(color: Colors.green)));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
 
-                      //    Navigator.of(context).pushNamed(
-                      //   '/loginScreen',
-                      // );
-                    },
-                  ),
+                            //    Navigator.of(context).pushNamed(
+                            //   '/loginScreen',
+                            // );
+                          } else {
+                            setState(() {
+                              initState();
+                            });
+                          }
+                        });
+                      }),
                 ),
               ],
             ),
