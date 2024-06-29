@@ -43,7 +43,7 @@ class BasketScreen extends StatelessWidget {
             onPressed: () => Navigator.of(context).pop(),
           ),
           elevation: 0,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.orangeAccent,
           title: Text('Mes réservations',
               style: kEncodeSansBold.copyWith(color: kBlackColor)),
 

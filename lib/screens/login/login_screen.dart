@@ -9,7 +9,7 @@ import '../../widgets/custom_buttom.dart';
 
 //import '/widgets/widgets.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   static const String routeName = '/loginScreen';
 
   const LoginScreen({super.key});
@@ -19,6 +19,16 @@ class LoginScreen extends StatelessWidget {
       settings: const RouteSettings(name: routeName),
       builder: (context) => const LoginScreen(),
     );
+  }
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -59,6 +69,11 @@ class LoginScreen extends StatelessWidget {
                   } else {
                     //  context.read<ProfileBloc>().add(
                     //    LoadProfile(context.read<AuthBloc>().state.authUser));
+                    const snackBar = SnackBar(
+                        content: Text('bien connecté',
+                            style: TextStyle(color: Colors.green)));
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
                     Navigator.pushNamed(context, '/home');
                   }
                 }),

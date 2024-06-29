@@ -56,7 +56,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
         backgroundColor: Colors.grey,
         appBar: AppBar(
           title: const Text('Ajouter une Actualité'),
-          backgroundColor: const Color(0xFFfed9cd),
+          backgroundColor: Colors.orangeAccent,
           leading: IconButton(
             icon: const Icon(
               Icons.arrow_back_ios,

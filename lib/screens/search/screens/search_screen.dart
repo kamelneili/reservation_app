@@ -35,7 +35,7 @@ class _SearchScreenState extends State<SearchScreen> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: AppBar(
-          backgroundColor: const Color(0xFFfed9cd),
+          backgroundColor: Colors.orangeAccent,
           leading: IconButton(
             icon: const Icon(
               Icons.arrow_back_ios,

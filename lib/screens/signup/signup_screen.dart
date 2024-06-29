@@ -54,7 +54,7 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFFfed9cd),
+        backgroundColor: Colors.orangeAccent,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios,

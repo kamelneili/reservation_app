@@ -153,12 +153,15 @@ class _DeliveryTimeScreenState extends State<DeliveryTimeScreen> {
                 children: [
                   ElevatedButton(
                     style: ButtonStyle(
-                        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                                side: BorderSide(
-                                  color: Theme.of(context).primaryColor,
-                                )))),
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                              side: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                              ))),
+                      backgroundColor:
+                          WidgetStateProperty.all(Colors.orangeAccent),
+                    ),
                     onPressed: () async {
                       SharedPreferences pref =
                           await SharedPreferences.getInstance();

@@ -36,7 +36,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       //appBar: CustomAppBar(title: 'Profile'),
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.orangeAccent,
         centerTitle: true,
         title: Text(
           LocaleKeys.myprofil.tr(),
